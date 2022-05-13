@@ -3,7 +3,6 @@ import MovieCard from "components/MovieCard";
 import Pagination from "components/Pagination";
 import { useEffect, useState } from "react";
 import { MoviePage } from "types/movie";
-import { moveSyntheticComments } from "typescript";
 import { BASE_URL } from "utils/requests";
 
 function Listing() {
@@ -29,9 +28,13 @@ function Listing() {
         setPage(data);
       })
   }, [pageNumber]);
+
+  const handlePageChange = (newPageNumber: number) => {
+    setPageNumber(newPageNumber);
+  }
   return (
     <>
-      <Pagination />
+      <Pagination page={page} onChange={handlePageChange}/>
       <div className="container">
         <div className="row">
           {page.content.map(movie => (
