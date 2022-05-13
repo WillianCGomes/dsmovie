@@ -9,23 +9,25 @@ import org.springframework.transaction.annotation.Transactional;
 import com.wcg.dsmovie.dto.MovieDTO;
 import com.wcg.dsmovie.entities.Movie;
 import com.wcg.dsmovie.repositories.MovieRepository;
+import com.wcg.dsmovie.repositories.UserRepository;
 
 @Service
 public class MovieService {
 
 	@Autowired
-	private MovieRepository repository;
+	private MovieRepository movieRepository;
+	private UserRepository userRepository;
 
 	@Transactional(readOnly = true)
 	public Page<MovieDTO> findAll(Pageable pageable) {
-		Page<Movie> result = repository.findAll(pageable);
+		Page<Movie> result = movieRepository.findAll(pageable);
 		Page<MovieDTO> page = result.map(x -> new MovieDTO(x));
 		return page;
 	}
 
 	@Transactional(readOnly = true)
 	public MovieDTO findById(Long id) {
-		Movie result = repository.findById(id).get();
+		Movie result = movieRepository.findById(id).get();
 		MovieDTO dto = new MovieDTO(result);
 		return dto;
 	}

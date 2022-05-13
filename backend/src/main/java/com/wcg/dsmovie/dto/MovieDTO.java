@@ -67,5 +67,4 @@ public class MovieDTO {
 	public void setImage(String image) {
 		this.image = image;
 	}
-
 }
