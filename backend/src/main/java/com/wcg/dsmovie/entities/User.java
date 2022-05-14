@@ -18,6 +18,7 @@ public class User {
 	}
 
 	public User(Long id, String email) {
+		super();
 		this.id = id;
 		this.email = email;
 	}
@@ -37,5 +38,5 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	
 }
